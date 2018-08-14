@@ -1,6 +1,10 @@
-## Android 
-    1. 基于React Native 版本：0.56.0
-    2. 本工程是基于React Native环境创建，并不是创建了一个library，如需要修改成library请参考官网：https://facebook.github.io/react-native/docs/native-modules-setup
+##  前述 
+
+1. [高德官网申请Key](http://lbs.amap.com/dev/#/).
+2.  阅读[开发指南](http://lbs.amap.com/api/android-location-sdk/locationsummary/).Android
+3.  基于React Native 版本：0.56.0
+4. 本工程是基于React Native环境创建，并不是创建了一个library，如需要修改成library请参考[官网](https://facebook.github.io/react-native/docs/native-modules-setup)
+
 ### React-Native 环境搭建
 参考官网介绍：https://facebook.github.io/react-native/docs/getting-started.html
 中文地址：https://reactnative.cn/docs/getting-started/
@@ -22,6 +26,37 @@
     //如果需要指定版本，可以在末尾加上--version指定版本
     react-native init amap-location-react-native
     ```
+### 配置AndroidManifest.xml
+1. 注册定位SDK需求的权限
+
+```
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+<uses-permission android:name="android.permission.CALL_PHONE"/>
+<uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+<uses-permission android:name="android.permission.INTERNET"/>
+<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+```
+2. 填写您的key
+
+    注意此处的key是测试使用的key，在使用过程中请使用自己的key
+
+```
+<meta-data
+        android:name="com.amap.api.v2.apikey"
+        android:value="78ed9fba3da4ec7ae3eeac7e9d8ae34e"/>
+```
+3. 注册定位service
+
+```
+<service android:name="com.amap.api.location.APSService"/>
+```
 
 ### 关键代码
 #### 编写模块
