@@ -1,0 +1,20 @@
+PODS:
+  - AMapFoundation (1.5.3)
+  - AMapLocation (2.6.1):
+    - AMapFoundation (~> 1.4)
+
+DEPENDENCIES:
+  - AMapLocation (~> 2.6)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AMapFoundation
+    - AMapLocation
+
+SPEC CHECKSUMS:
+  AMapFoundation: 58f883c80754c659cf626deb3150936bfe8f1772
+  AMapLocation: cf024b53dc03663efb4ea4bcce27d4cce58bb97a
+
+PODFILE CHECKSUM: ab9d2d86338f9397b4e88c337f2323262c720a6d
+
+COCOAPODS: 1.5.3

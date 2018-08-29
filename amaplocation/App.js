@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Button, DeviceEventEmitter} from 'react-native';
+import {Platform, StyleSheet, Text, View, Button, DeviceEventEmitter, NativeEventEmitter} from 'react-native';
 import AMapLocation from './AMapLocation';
 
 
@@ -24,6 +24,12 @@ export default class App extends Component<Props> {
   state = {}
   //注册监听
   componentWillMount(){
+    const locationManagerEmitter = new NativeEventEmitter(AMapLocation);
+    const subscription = locationManagerEmitter.addListener('locationChanged', (result) => {
+      console.log(result);
+      this.setState(result);
+    });
+
     this.listener = DeviceEventEmitter.addListener('locationChanged', (result) => {
       console.log(result);
         this.setState(result);
@@ -32,6 +38,7 @@ export default class App extends Component<Props> {
   //移除监听
   componentWillUnMount(){
     this.listener.remove();
+    subscription.remove();
     AMapLocation.destroyLocation();
   }
 
@@ -70,11 +77,11 @@ export default class App extends Component<Props> {
 }
 
 function startContinueLocation(){
-  AMapLocation.startLocation("{'onceLocation':false, 'needAddress':true,'interval': 2000}");
+  AMapLocation.startLocation('{"onceLocation":false, "needAddress":true,"interval": 2000}');
 }
 
 function startOnceLocation(){
-  AMapLocation.startLocation("{'onceLocation':true, 'needAddress':true, 'interval': 2000}");
+  AMapLocation.startLocation('{"onceLocation":true, "needAddress":true,"interval": 2000}');
 }
 
 function stopLocation(){
@@ -95,7 +102,7 @@ const styles = StyleSheet.create({
     width: 120,
   },
   button: {
-    backgroundColor:'#0079FF',
+    backgroundColor:'#F079FF',
     textAlign: 'center',
     color:'#FFFFFF',
     marginBottom: 4,

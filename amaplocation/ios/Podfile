@@ -1,0 +1,6 @@
+
+target 'amaplocation' do
+
+pod 'AMapLocation', '~>2.6'
+
+end
