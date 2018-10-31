@@ -255,3 +255,12 @@ function stopLocation(){
     componentWillMount()和componentWillUnMount()需要写到“export default class App extends Component<Props> {..."内，否则各种错误。
 2. 待补充
 
+## 运行
+```
+//安装依赖包
+npm install
+//运行Android 示例
+react-native run-android
+//运行IOS示例
+react-native run-ios
+```
