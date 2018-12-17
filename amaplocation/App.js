@@ -81,6 +81,7 @@ function stopLocation(){
 const styles = StyleSheet.create({
   body: {
     padding: 16,
+    paddingTop: 60,
   },
   item: {
     flexDirection: 'row',
@@ -100,6 +101,7 @@ const styles = StyleSheet.create({
     fontSize:16,
     lineHeight:40,
     height:40,
+    marginBottom: 2,
   }
 }
 );

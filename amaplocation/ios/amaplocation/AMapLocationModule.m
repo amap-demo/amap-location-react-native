@@ -40,12 +40,12 @@ RCT_EXPORT_METHOD(startLocation:(NSString *)locationParams)
         return;
       }
       if (location) {
-        NSDictionary *resultDic = @{@"callbackTime": [NSString stringWithFormat:@"%f", [[NSDate date] timeIntervalSince1970]],
+        NSDictionary *resultDic = @{@"callbackTime": [self getFormatTime:[NSDate date]],
                                     @"code": @"0",
                                     @"lat": [NSString stringWithFormat:@"%f", location.coordinate.latitude],
                                     @"lon": [NSString stringWithFormat:@"%f", location.coordinate.longitude],
                                     @"addr": @"",
-                                    @"locTime": [NSString stringWithFormat:@"%f", [location.timestamp timeIntervalSince1970]]
+                                    @"locTime": [self getFormatTime:location.timestamp]
                                     };
         
         [weakSelf sendEventWithName:@"locationChanged" body:resultDic];
@@ -78,6 +78,8 @@ RCT_EXPORT_METHOD(destroyLocation)
 - (void)initLocationManager {
   self.locationManager = [[AMapLocationManager alloc] init];
   self.locationManager.delegate = self;
+  self.locationManager.locationTimeout = 2;
+  self.locationManager.desiredAccuracy = 1000;
 }
 
 #pragma mark - Delegate
@@ -89,12 +91,12 @@ RCT_EXPORT_METHOD(destroyLocation)
 - (void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location {
   NSLog(@"didUpdateLocation:%@", location);
   
-  NSDictionary *resultDic = @{@"callbackTime": [NSString stringWithFormat:@"%f", [[NSDate date] timeIntervalSince1970]],
+  NSDictionary *resultDic = @{@"callbackTime": [self getFormatTime:[NSDate date]],
                               @"code": @"0",
                               @"lat": [NSString stringWithFormat:@"%f", location.coordinate.latitude],
                               @"lon": [NSString stringWithFormat:@"%f", location.coordinate.longitude],
                               @"addr": @"",
-                              @"locTime": [NSString stringWithFormat:@"%f", [location.timestamp timeIntervalSince1970]]
+                              @"locTime": [self getFormatTime:location.timestamp]
                               };
   
   [self sendEventWithName:@"locationChanged" body:resultDic];
@@ -102,6 +104,14 @@ RCT_EXPORT_METHOD(destroyLocation)
 
 - (void)amapLocationManager:(AMapLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
   NSLog(@"didChangeAuthorizationStatus:%d", status);
+}
+
+
+- (NSString *)getFormatTime:(NSDate*)date {
+  NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+  [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+  NSString *timeString = [formatter stringFromDate:date];
+  return timeString;
 }
 
 @end
