@@ -1,4 +1,4 @@
-package com.amaplocation;
+package com.amaplocation.rn;
 
 import android.text.TextUtils;
 

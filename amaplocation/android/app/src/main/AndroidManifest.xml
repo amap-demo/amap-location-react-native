@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.amaplocation">
+          package="com.amaplocation.rn">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
@@ -22,7 +22,7 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="78ed9fba3da4ec7ae3eeac7e9d8ae34e"/>
+            android:value="e481327b9d366a04e716809fd38a8538"/>
         <service android:name="com.amap.api.location.APSService"/>
 
         <activity

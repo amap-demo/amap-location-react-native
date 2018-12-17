@@ -98,13 +98,30 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.amaplocation"
+        applicationId "com.amaplocation.rn"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
+        }
+    }
+
+    signingConfigs {
+        /**
+         * 设置你的keystore相关
+         * demo中只是一个示例，使用时请根据实际情况进行配置
+         */
+        debug {
+            //keystore中key的别名
+            keyAlias 'androiddebugkey'
+            //keystore中key的密码
+            keyPassword 'android'
+            //keystore的文件路径，可以是绝对路径也可以是相对路径
+            storeFile file('../keystores/debug.keystore')
+            //keystore的密码
+            storePassword 'android'
         }
     }
     splits {
@@ -140,7 +157,7 @@ dependencies {
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     compile "com.facebook.react:react-native:0.56.0"  // From node_modules
-    compile 'com.amap.api:location:4.2.0'
+    compile 'com.amap.api:location:4.4.0'
 
 }
 

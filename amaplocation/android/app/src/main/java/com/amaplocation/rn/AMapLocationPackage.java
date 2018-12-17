@@ -1,4 +1,4 @@
-package com.amaplocation;
+package com.amaplocation.rn;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;
