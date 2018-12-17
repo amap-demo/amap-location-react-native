@@ -249,11 +249,16 @@ function stopLocation(){
   AMapLocation.stopLocation();
 }
 ```
+### 疑难杂症
+#### Android 运行时出现“unable to load script from assets 'index.android bundle'”错误的解决方法
+1. 先在工作目录创建：android/app/src/main 目录下创建一个  assets空文件夹
+2. 执行：react-native bundle --platform android --dev false --entry-file index.js --bundle-output 
+android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
+3. 运行react-native run-android
+
 ## 容易遇到的坑
 1. 注册JS时间监听
-
     componentWillMount()和componentWillUnMount()需要写到“export default class App extends Component<Props> {..."内，否则各种错误。
-2. 待补充
 
 ## 运行
 ```
