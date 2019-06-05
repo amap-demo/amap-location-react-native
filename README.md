@@ -257,7 +257,7 @@ android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/m
 3. 运行react-native run-android
 
 ## 容易遇到的坑
-1. 注册JS时间监听
+1. 注册JS事件监听
     componentWillMount()和componentWillUnMount()需要写到“export default class App extends Component<Props> {..."内，否则各种错误。
 
 ## 运行
